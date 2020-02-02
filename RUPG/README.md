@@ -31,6 +31,7 @@ There are four APIs you'll need to use in order to accomplish this project:
 
 -   [Random Kanye Quote Generator API](https://kanye.rest/)
     -   This API returns a random quote from Kanye West
+    -   The data comes back as an object
     -   You'll need the quote (the author is always Kanye)
 -   [PokeAPI](https://pokeapi.co/docs/v2.html)
     -   This API is for querying all things pokemon - from cities in the poke-verse, to different berries, and the pokemon themselves
@@ -54,29 +55,29 @@ Renderer
 
 -   Your Renderer is a *class* which contains each of the methods to render each section of the user page through Handlebars
 -   We've set up some empty methods for you to fill out - their names should suggest what needs to happen in each one
--   You also have a "main" render method which should invoke all the "inner" methods with the relevant parameters
+-   You also have a "main" `render` method which should invoke all the "inner" methods with the relevant parameters
 
--   This method will receive the data object with all the data from the APIs
+    -   This method will receive the `data` object with all the data from the APIs
 
 HTML
 
 -   Each of your Renderer methods should have a corresponding Handlebars template script filled in here
--   Note that we are using separate scripts for each section - hence you will have to run the whole source-template-compile code for each script
+-   Note that we are using **separate** scripts for each section - hence you will have to run the whole `source-template-compile` code for each script
 
 APIManager
 
--   Your API Manager is a *class* with one loadData method - this should make all the API requests
--   The callbacks of your requests should update the data object in the constructor
+-   Your API Manager is a *class* with one `loadData` method - this should make all the API requests
+-   The callbacks of your requests should update the `data` object in the constructor
 
 main.js (your controller)
 
 -   Here you should:
     -   Create the instances of the classes you'll be using
-    -   Define the loadData and renderData functions
+    -   Define the `loadData` and `renderData` functions
     -   Use the instances with MVC principles
 
-    -   In particular, when the user clicks the Load User Data button, you should use your apiManager instance to get all the data
-    -   When the user clicks the Display User button, you should invoke your render method and give it the data from the apiManager
+        -   In particular, when the user clicks the **Load User Data** button, you should use your `apiManager` instance to get all the data
+        -   When the user clicks the **Display User** button, you should invoke your `render` method and give it the `data` from the `apiManager`
 
     -   The way this works means your page will start empty, and only get populated once you load and display the data via the buttons - this is a limitation we will be able to overcome when we learn about Promises
 
@@ -88,7 +89,7 @@ Alternatively, if you would like a design-challenge, get rid of the whole CSS an
 
 #### WORKING WITH NEW APIS
 
-Part of your work as a developer is to explore and understand new APIs - so if you can't figure out how to get what you want out of an API - read the documentation! Remember, when you make a request to an API you're playing by their rules and each API is different!
+Part of your work as a developer is to explore and understand new APIs - so if you can't figure out how to get what you want out of an API - **read the documentation!** Remember, when you make a request to an API you're playing by their rules and each API is different!
 
 Strong suggestion: these are all pretty straightforward APIs, so you can test them out using Google (or any browser) - just paste the API link as a URL and you'll be able to see exactly what data returns, which keys it has, etc. Great starting point.
 
@@ -98,7 +99,7 @@ Strong suggestion: these are all pretty straightforward APIs, so you can test th
 
 #### EXTENSIONS
 
-1\. Render every Name on your page in "Proper Case" ("My Name" instead of "my name")\
+1. Render every Name on your page in "Proper Case" ("My Name" instead of "my name")\
 Create your own Handlebars Helper to do this - you can read on how to make one [here](https://handlebarsjs.com/block_helpers.html)
 
 2. Add in two more buttons - a "Save User Page" button and a "Load User Page".
@@ -108,9 +109,9 @@ Create your own Handlebars Helper to do this - you can read on how to make one 
 
 2.1 Save multiple users
 
--   Edit the object you're saving in Local Storage to be a users object. Every time you save a user, you should save the user's name as a key to your users object (yes, nested objects), and the snapshot of their page as the value.
+-   Edit the object you're saving in Local Storage to be a `users` object. Every time you save a user, you should save the user's name as a key to your `users` object (yes, nested objects), and the snapshot of their page as the value.
 -   Add a drop-down menu with the list of saved users (taken from local storage). Now, when you click on the "Load User Page" button, it should load the saved user you select from the drop-down menu
 
--   Hint: Object.keys() *might be useful here*
+-   Hint: `Object.keys()` *might be useful here*
 
 #### DONE FOR REAL NOW
