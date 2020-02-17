@@ -255,6 +255,20 @@ Add a button to each of the city's weather while rendering. This button will nee
 
 #### 2\. LAST UPDATED
 
+On page load, we want to show the weather for the user's current location. Check out [this resource](https://www.w3schools.com/html/html5_geolocation.asp) for tips on how to use the browser's geolocation api. Once you can get the user's current location you will need to make a few changes to your code:
+
+-   The current location provides you with the user's latitude and longitude. Edit your server route to allow for accepting lat and long in addition to the city's name - you can use optional query params.
+    -   If the lat and long are provided make a request to the weather API with those
+    -   Otherwise, make the request with the name
+-   Edit your `getCityData` method to allow it to receive `lat` and `long` in addition to the name. Allow it to make a request with the `lat` and `long`
+-   Add the function to your `main` which get's the current location on page load, sends it to your model, and then renders the result in the main city area.
+
+Great! Now the user always knows the weather in their location!
+
+* * * * *
+
+#### 3\. LAST UPDATED
+
 Now let's display the time that the weather data was last updated.
 
 In order to display the data you'll need to do a few things:
