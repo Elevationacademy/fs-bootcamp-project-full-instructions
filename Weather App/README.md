@@ -238,16 +238,16 @@ So far, our app is static - I cannot refresh the weather unless I remove it, and
 Add a button to each of the city's weather while rendering. This button will need to:
 
 -   Trigger an on click function in your controller that takes takes the name of the city
--   It should then call an updateCity method on your TempManager and pass it the city name
+-   It should then call an `updateCity` method on your `TempManager` and pass it the city name
 
--   The updateCity function should call a PUT request to the /city put route on the server, and pass it the city name
--   When it gets the data back it should update the class' cityData array
+    -   The `updateCity` function should call a PUT request to the `/city` put route on the server, and pass it the city name
+    -   When it gets the data back it should update the class' `cityData` array
 
--   It should then call the renderData method of your Renderer
--   On the Server /city put route
+-   It should then call the `renderData` method of your `Renderer`
+-   On the Server `/city` `put` route
 
--   You should take the city name and call to the external API
--   Then it should send the city data back and update your DB with the new data
+    -   You should take the city name and call to the external API
+    -   Then it should send the city data back and update your DB with the new data
 
 -   You'll need async on a couple of these functions to make this work
 
@@ -255,12 +255,24 @@ Add a button to each of the city's weather while rendering. This button will nee
 
 #### 2\. LAST UPDATED
 
-We're already recording and displaying the "last updated" time of the weather, so let's use to to make our app smart!
+Now let's display the time that the weather data was last updated.
+
+In order to display the data you'll need to do a few things:
+
+1.  Update your DB Schema to have an `updatedAt` key which is of type `date`.
+2.  Extract the last updated time from the weather API. Notice how the API will only return that data if you request data in `XML` format. Read the documentation to see how you can do that. You'll need to understand how to handle data in XML. For a hint head to the end of the page.
+3.  Now that you have the `updatedAt` property for every city, you need to add this to your HTML template.
+
+Once we are recording and displaying the "last updated" time of the weather, we need to make our app smart!
 
 On page load you need to do the following:
 
 -   Create a new date either with native JS or moment.js
--   Get the saved data from your DB and check, for each city, the difference in date between the cities updatedAt date and a time, and the current time
+-   Get the saved data from your DB and check, for each city, the difference in date between the city's `updatedAt` date and time, and the current time
 -   If the difference in time is greater than 3 hours, then query the external API for the weather, update your DB with the new results and send your results back to the client.
 
 Your app also now updates on it's own. Dope.
+
+Hint for handling XML:
+
+You can convert XML to JSON in order to work with it in a way that you're already familiar with. You can find an npm package that does that for you - there are many so feel free to do a google search - or you can use [xml2js](https://www.npmjs.com/package/xml2js) which we found can do the trick.
